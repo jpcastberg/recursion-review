@@ -8,9 +8,23 @@ var getElementsByClassName = function(className) {
   //create results array
   const output = [];
   //get all html tags in doc
-  const allTags = document.getElementsByTagName('*');
+  //const allTags = document.getElementsByTagName('*');
+  
+  var determineClassAndChildren = function (DOMElement) {
+    debugger;
+    if ( DOMElement.classList.contains( className ) ) {
+      output.push( DOMElement );
+    }
+    if ( DOMElement.hasChildNodes() ) {
+      for ( var i = 0; i < DOMElement.children.length; i++ ) {
+        determineClassAndChildren( DOMElement.children[i] );
+      }
+    }
+    return null;
+  };
+  determineClassAndChildren(document.body);
   //iterate through all tags
-  //allTags
+  
   //check if tag contains class -> if yes, push to output
   //check if tag has child elements -> if yes, recursively check child elements^
   //output results array
